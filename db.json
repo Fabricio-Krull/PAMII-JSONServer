@@ -1,0 +1,77 @@
+{
+  "people": [
+    {
+      "nome": "Júlia",
+      "sobrenome": "Macedo",
+      "email": "juumacedo@email.com",
+      "id": "4de5"
+    },
+    {
+      "nome": "Rodo",
+      "sobrenome": "Astolfo",
+      "email": "astoldo@email.com",
+      "id": "352d"
+    },
+    {
+      "nome": "Tonho",
+      "sobrenome": "Conneto",
+      "email": "connetonho@email.com",
+      "id": "0fe7"
+    },
+    {
+      "nome": "Carla",
+      "sobrenome": "Ferreira",
+      "email": "carla.ferreira@email.com",
+      "id": "9ae8"
+    },
+    {
+      "nome": "Patrícia",
+      "sobrenome": "Souza",
+      "email": "patricia.souza@email.com",
+      "id": "fe36"
+    },
+    {
+      "nome": "Eduardo",
+      "sobrenome": "Ribeiro",
+      "email": "eduardo.ribeiro@email.com",
+      "id": "c43f"
+    },
+    {
+      "nome": "Fernandhia",
+      "sobrenome": "Arteis",
+      "email": "fernanda.gomes@email.com",
+      "id": "6bb0"
+    },
+    {
+      "nome": "Renata",
+      "sobrenome": "Barbosa",
+      "email": "renata.barbosa@email.com",
+      "id": "ff21"
+    },
+    {
+      "nome": "Rastafari",
+      "sobrenome": "Abdiname",
+      "email": "rasta.luco@email.com",
+      "id": "e959"
+    },
+    {
+      "nome": "Raadio",
+      "sobrenome": "Pathio",
+      "email": "al0@email.com",
+      "id": "eda9"
+    },
+    {
+      "id": "a19f",
+      "nome": "Marisa",
+      "sobrenome": "Monte",
+      "email": "marimonte@gmail.com"
+    },
+    {
+      "id": "4412",
+      "nome": "Carlingos",
+      "sobrenome": "Ipnose",
+      "email": "ipnocarlo@email.com"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

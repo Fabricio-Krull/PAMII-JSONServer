@@ -4,21 +4,27 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "app:lan": "expo start --lan",
+    "app:tun": "expo start --tunnel",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "0.3.2",
     "@react-navigation/native": "^7.1.9",
     "@react-navigation/stack": "^7.3.2",
     "axios": "^1.11.0",
-    "expo": "54.0.22",
-    "expo-status-bar": "~55.0.4",
-    "react": "19.0.0",
-    "react-native": "0.79.6"
+    "expo": "~54.0.33",
+    "expo-status-bar": "~3.0.9",
+    "json-server": "^1.0.0-beta.12",
+    "react": "^19.2.3",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0"
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
+    "@types/react": "19.2.3",
     "typescript": "~5.9.2"
   },
   "private": true
