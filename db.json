@@ -3,7 +3,7 @@
     {
       "nome": "Júlia",
       "sobrenome": "Macedo",
-      "email": "juumacedo@email.com",
+      "email": "juuumacedo@email.com",
       "id": "4de5"
     },
     {
@@ -23,12 +23,6 @@
       "sobrenome": "Ferreira",
       "email": "carla.ferreira@email.com",
       "id": "9ae8"
-    },
-    {
-      "nome": "Patrícia",
-      "sobrenome": "Souza",
-      "email": "patricia.souza@email.com",
-      "id": "fe36"
     },
     {
       "nome": "Eduardo",

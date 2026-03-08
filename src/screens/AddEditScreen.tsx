@@ -122,7 +122,9 @@ export default function AddEditScreen({ navigation }){
                             height: 30,
                             width: 80,
                             backgroundColor: view === "Create" ? "#008ac0" : "#023e7d",
-                            borderRadius: 5
+                            borderRadius: 5,
+                            borderWidth: view === "Create" ? 1 : 0,
+                            borderColor: view === "Create" ? "#adefff" : ""
                         }}
                         onPress={() => setView("Create")}
                     >
@@ -138,7 +140,9 @@ export default function AddEditScreen({ navigation }){
                             height: 30,
                             width: 80,
                             backgroundColor: view === "Update" ? "#008ac0" : "#023e7d",
-                            borderRadius: 5
+                            borderRadius: 5,
+                            borderWidth: view === "Update" ? 1 : 0,
+                            borderColor: view === "Update" ? "#adefff" : ""
                         }}
                         onPress={() => setView("Update")}
                     >
