@@ -25,12 +25,6 @@
       "id": "9ae8"
     },
     {
-      "nome": "Eduardo",
-      "sobrenome": "Ribeiro",
-      "email": "eduardo.ribeiro@email.com",
-      "id": "c43f"
-    },
-    {
       "nome": "Fernandhia",
       "sobrenome": "Arteis",
       "email": "fernanda.gomes@email.com",
@@ -65,6 +59,18 @@
       "nome": "Carlingos",
       "sobrenome": "Ipnose",
       "email": "ipnocarlo@email.com"
+    },
+    {
+      "id": "5628",
+      "nome": "Edson",
+      "sobrenome": "Arantes",
+      "email": "kingoffootbol@pele.com"
+    },
+    {
+      "id": "9b1a",
+      "nome": "João",
+      "sobrenome": "Eskimo",
+      "email": "skimozin@email.com"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

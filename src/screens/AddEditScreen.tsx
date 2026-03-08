@@ -3,6 +3,7 @@ import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import Loading from "../components/Loading";
 import { TextInput } from "react-native-gesture-handler";
+import { ip } from "./Ip";
 
 const { height, width } = Dimensions.get('window');
 
@@ -13,8 +14,7 @@ export default function AddEditScreen({ navigation }){
     const [person, setPerson] = useState({
         nome: "",
         sobrenome: "",
-        email: "",
-        id: ""
+        email: ""
     });
 
     const [name, setName] = useState("");
@@ -30,29 +30,26 @@ export default function AddEditScreen({ navigation }){
         setPerson({
             nome: "",
             sobrenome: "",
-            email: "",
-            id: ""
+            email: ""
         });
     }
 
     useEffect(() => {
         if(id.length == 4)
-            axios.get(`http://192.168.0.11:3000/people/${id.toLowerCase()}`).then(response => {
+            axios.get(`http://${ip}:3000/people/${id.toLowerCase()}`).then(response => {
                 setPerson(response.data);
             }).catch(error => {
                 setPerson({
                     nome: "",
                     sobrenome: "",
-                    email: "",
-                    id: ""
+                    email: ""
                 });
             })
         else
             setPerson({
                 nome: "",
                 sobrenome: "",
-                email: "",
-                id: ""
+                email: ""
             });
     }, [id]);
 
@@ -207,7 +204,7 @@ export default function AddEditScreen({ navigation }){
                                 newPerson.nome = name;
                                 newPerson.sobrenome = surname;
                                 newPerson.email = email;
-                                axios.post("http://192.168.0.11:3000/people", newPerson).then(response => {
+                                axios.post(`http://${ip}:3000/people`, newPerson).then(response => {
                                     alert("Usuário criado com sucesso!");
                                 }).finally(() => clear());
                             }
@@ -297,7 +294,7 @@ export default function AddEditScreen({ navigation }){
                                 }}
 
                                 onPress={() => {
-                                    axios.put(`http://192.168.0.11:3000/people/${person?.id}`, person).then(response =>{
+                                    axios.put(`http://${ip}:3000/people/${person?.id}`, person).then(response =>{
                                         alert("Usuário atualizado com sucesso!");
                                     }).catch(error => {
                                         console.log(error);

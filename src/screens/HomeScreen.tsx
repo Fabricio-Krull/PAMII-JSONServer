@@ -2,6 +2,7 @@ import axios from "axios";
 import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity, TextInput } from 'react-native';
 import Loading from "../components/Loading";
+import { ip } from "./Ip";
 
 const { height, width } = Dimensions.get('window');
 
@@ -16,7 +17,7 @@ export default function HomeScreen({ navigation }){
     const [action, setAction] = useState(true);
 
     const deleteMe = (id: string) => {
-        axios.delete(`http://192.168.0.11:3000/people/${id}`).then(response => {
+        axios.delete(`http://${ip}:3000/people/${id}`).then(response => {
             alert("Usuário apagado com sucesso!");
         }).finally(() => {
             setLoading(true);
@@ -30,7 +31,7 @@ export default function HomeScreen({ navigation }){
     }
 
     useEffect(() => {
-        axios.get(`http://192.168.0.11:3000/people?nome:${filterType}=${nameFilter}`).then(response => {
+        axios.get(`http://${ip}:3000/people?nome:${filterType}=${nameFilter}`).then(response => {
             setPeople(response.data);
             setLoading(false);
             // alert(JSON.stringify(response.data));
