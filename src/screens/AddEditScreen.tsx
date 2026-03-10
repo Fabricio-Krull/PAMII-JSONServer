@@ -3,14 +3,13 @@ import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import Loading from "../components/Loading";
 import { TextInput } from "react-native-gesture-handler";
-import { ip } from "./Ip";
+import { urlBase } from "../server/apiJS";
 
 const { height, width } = Dimensions.get('window');
 
 export default function AddEditScreen({ navigation }){
 
     const [view, setView] = useState("Create");
-    const [loading, setLoading] = useState(true);
     const [person, setPerson] = useState({
         nome: "",
         sobrenome: "",
@@ -36,7 +35,7 @@ export default function AddEditScreen({ navigation }){
 
     useEffect(() => {
         if(id.length == 4)
-            axios.get(`http://${ip}:3000/people/${id.toLowerCase()}`).then(response => {
+            axios.get(`http://${urlBase}/people/${id.toLowerCase()}`).then(response => {
                 setPerson(response.data);
             }).catch(error => {
                 setPerson({
@@ -204,7 +203,7 @@ export default function AddEditScreen({ navigation }){
                                 newPerson.nome = name;
                                 newPerson.sobrenome = surname;
                                 newPerson.email = email;
-                                axios.post(`http://${ip}:3000/people`, newPerson).then(response => {
+                                axios.post(`http://${urlBase}/people`, newPerson).then(response => {
                                     alert("Usuário criado com sucesso!");
                                 }).finally(() => clear());
                             }
@@ -294,7 +293,7 @@ export default function AddEditScreen({ navigation }){
                                 }}
 
                                 onPress={() => {
-                                    axios.put(`http://${ip}:3000/people/${person?.id}`, person).then(response =>{
+                                    axios.put(`http://${urlBase}/people/${person?.id}`, person).then(response =>{
                                         alert("Usuário atualizado com sucesso!");
                                     }).catch(error => {
                                         console.log(error);

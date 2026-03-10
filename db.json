@@ -33,7 +33,7 @@
     {
       "nome": "Renata",
       "sobrenome": "Barbosa",
-      "email": "renata.barbosa@email.com",
+      "email": "renata.barbuda@email.com",
       "id": "ff21"
     },
     {
@@ -71,6 +71,12 @@
       "nome": "João",
       "sobrenome": "Eskimo",
       "email": "skimozin@email.com"
+    },
+    {
+      "id": "4779",
+      "nome": "Kendrick",
+      "sobrenome": "Lamar",
+      "email": "K.dot@email.com"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
