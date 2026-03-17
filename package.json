@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
+    "start-server": "json-server db.json --watch",
     "start": "expo start",
     "app:lan": "expo start --lan",
     "app:tun": "expo start --tunnel",

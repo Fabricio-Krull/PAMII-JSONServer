@@ -1,2 +1,2 @@
-const urlBase = "172.24.154.232:3000";
+const urlBase = "";
 export {urlBase};
