@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }){
     const [action, setAction] = useState(true);
 
     const deleteMe = (id: string) => {
-        axios.delete(`http://${urlBase}/people/${id}`).then(response => {
+        axios.delete(`${urlBase}/people/${id}`).then(response => {
             alert("Usuário apagado com sucesso!");
         }).finally(() => {
             setLoading(true);
@@ -31,7 +31,7 @@ export default function HomeScreen({ navigation }){
     }
 
     useEffect(() => {
-        axios.get(`http://${urlBase}/people?nome:${filterType}=${nameFilter}`).then(response => {
+        axios.get(`${urlBase}/people?nome:${filterType}=${nameFilter}`).then(response => {
             setPeople(response.data);
             setLoading(false);
             // alert(JSON.stringify(response.data));
@@ -102,12 +102,12 @@ export default function HomeScreen({ navigation }){
                 borderColor: "#caf0f8"
             }}>
                 <TextInput style={{
-                        width: "75%",
                         height: "75%",
-                        backgroundColor: "#192a51",
+                        width: "75%",
                         borderRadius: 30,
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0,
+                        backgroundColor: "#192a51",
                         color: "#caf0f8"
                     }}
                     value={nameFilter}
@@ -115,12 +115,12 @@ export default function HomeScreen({ navigation }){
                 >
                 </TextInput>
                 <TouchableOpacity style={{
-                        width: "20%",
                         height: "75%",
-                        backgroundColor: "#192a51",
+                        width: "20%",
                         borderRadius: 30,
                         borderTopLeftRadius: 0,
                         borderBottomLeftRadius: 0,
+                        backgroundColor: "#192a51",
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}

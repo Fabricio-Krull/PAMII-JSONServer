@@ -15,11 +15,17 @@ export default function AddEditScreen({ navigation }){
         sobrenome: "",
         email: ""
     });
-
+    const [people, setPeople] = useState([]);
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
+    const [searchType, setSearchType] = useState("id");
+
+    const changeFilter = () => {
+        setSearchType(searchType == "id" ? "nome" : "id");
+        clear();
+    }
 
     const clear = () => {
         setId("");
@@ -35,7 +41,7 @@ export default function AddEditScreen({ navigation }){
 
     useEffect(() => {
         if(id.length == 4)
-            axios.get(`http://${urlBase}/people/${id.toLowerCase()}`).then(response => {
+            axios.get(`${urlBase}/people/${id.toLowerCase()}`).then(response => {
                 setPerson(response.data);
             }).catch(error => {
                 setPerson({
@@ -51,6 +57,12 @@ export default function AddEditScreen({ navigation }){
                 email: ""
             });
     }, [id]);
+
+    useEffect(() => {
+        axios.get(`${urlBase}/people?nome:startsWith=${name}`).then(response => {
+            setPeople(response.data);
+        });
+    }, [name]);
 
     useEffect(() => {
         clear();
@@ -203,7 +215,7 @@ export default function AddEditScreen({ navigation }){
                                 newPerson.nome = name;
                                 newPerson.sobrenome = surname;
                                 newPerson.email = email;
-                                axios.post(`http://${urlBase}/people`, newPerson).then(response => {
+                                axios.post(`${urlBase}/people`, newPerson).then(response => {
                                     alert("Usuário criado com sucesso!");
                                 }).finally(() => clear());
                             }
@@ -222,18 +234,43 @@ export default function AddEditScreen({ navigation }){
                     alignItems: 'center',
                     gap: 10,
                 }}>
-                    <TextInput placeholder="Inserir id" style={{
-                            backgroundColor: "#0077b6",
-                            width: width / 1.2,
-                            borderRadius: 5,
-                            margin: 5,
-                            marginTop: 50,
-                            color: "#caf0f8"
-                        }}
-                        value={id}
-                        onChangeText={setId}
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        width: width / 1.2,
+                        height: height / 8,
+                        alignItems: 'center',
+                        margin: 5,
+                        marginTop: 50,
+                        justifyContent: 'center',
+                    }}>
+                        <TextInput placeholder={`Inserir ${searchType}`} style={{
+                                height: "50%",
+                                backgroundColor: "#0077b6",
+                                borderRadius: 5,
+                                width: "75%",
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 0,
+                                color: "#caf0f8"
+                            }}
+                            value={searchType =="id" ? id : name}
+                            onChangeText={searchType =="id" ? setId : setName}
 
-                    ></TextInput>
+                        >
+                        </TextInput>
+                        <TouchableOpacity style={{
+                                height: "50%",
+                                width: "25%",
+                                backgroundColor: "#023e7d",
+                                borderRadius: 5,
+                                borderTopLeftRadius: 0,
+                                borderBottomLeftRadius: 0,
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                            onPress={changeFilter}
+                        ><Text style={{color: "#caf0f8", fontSize: 20, marginBottom: 8}}>{searchType}</Text></TouchableOpacity>
+                    </View>
 
                     {(id.length == 4 && person.email != "" && person.nome != "" && person.sobrenome != "") ? (
                         <View style={{
@@ -293,7 +330,7 @@ export default function AddEditScreen({ navigation }){
                                 }}
 
                                 onPress={() => {
-                                    axios.put(`http://${urlBase}/people/${person?.id}`, person).then(response =>{
+                                    axios.put(`${urlBase}/people/${person?.id}`, person).then(response =>{
                                         alert("Usuário atualizado com sucesso!");
                                     }).catch(error => {
                                         console.log(error);
@@ -302,7 +339,72 @@ export default function AddEditScreen({ navigation }){
                             ><Text>Enviar dados</Text></TouchableOpacity>
                         </View>
                     ) : (
-                        <Loading/>
+                        <>
+                            {(people?.length > 0 && searchType == "nome") ? (
+                                <View style={{
+                                    height: height / 1.75,
+                                }}>
+
+                                    <FlatList
+                                        data={people}
+                                        keyExtractor={(item: any) => item.id.toString()}
+                                        contentContainerStyle={{
+                                            alignItems: 'center',
+                                            flexGrow: 1,
+                                            gap: 20,
+                                        }}
+                                        renderItem={( { item } ) => (
+    
+                                            <View style={{
+                                                display: 'flex',
+                                                flexDirection: 'row',
+                                                gap: 1,
+                                                borderWidth: 1,
+                                                borderRadius: 10,
+                                                borderColor: "#669bbc",
+                                                width: width / 1.3,
+                                                paddingLeft: 10
+                                            }}>
+                                                <TouchableOpacity style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    // borderColor: '#5ac05f',
+                                                    // borderWidth: 1,
+                                                    height: "90%",
+                                                    alignSelf: 'center',
+                                                    borderRadius: 5
+                                                }}
+                                                    onPress={() => {
+                                                        // alert(JSON.stringify(item));
+                                                        setId(item?.id);
+                                                        setSearchType("id");
+                                                    }}
+                                                ><Text style={{fontSize: 35, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>✅</Text>
+                                                </TouchableOpacity>
+                                                <View>
+                                                    <Text style={{
+                                                        color: "#fff",
+                                                        margin: 5,
+                                                        marginLeft: 10,
+                                                        marginRight: 10
+                                                    }}>{item?.nome} {item?.sobrenome}</Text>
+                                                    <Text style={{
+                                                        color: "#fff",
+                                                        margin: 5,
+                                                        marginLeft: 10,
+                                                        marginRight: 10
+                                                    }}>{item?.email}</Text>
+                                                </View>
+    
+                                            </View>
+                                        )}
+                                    />
+                                </View>
+                            ) : (
+                                <Loading/>
+
+                            )}
+                        </>
                     )}
 
                 </View>
