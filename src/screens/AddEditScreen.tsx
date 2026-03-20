@@ -3,11 +3,12 @@ import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import Loading from "../components/Loading";
 import { TextInput } from "react-native-gesture-handler";
-import { urlBase } from "../server/apiJS";
+import PopUp from "../components/PopUp";
+import { createUser, getUsersByName, getUsersById, updateUser } from "../server/peopleCRUD";
 
 const { height, width } = Dimensions.get('window');
 
-export default function AddEditScreen({ navigation }){
+export default function AddEditScreen({ navigation } : {navigation: any}){
 
     const [view, setView] = useState("Create");
     const [person, setPerson] = useState({
@@ -21,6 +22,8 @@ export default function AddEditScreen({ navigation }){
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
     const [searchType, setSearchType] = useState("id");
+    const [errorMessage, setErrorMessage] = useState('');
+    const [popupVisible, setPopupVisible] = useState(false);
 
     const changeFilter = () => {
         setSearchType(searchType == "id" ? "nome" : "id");
@@ -41,15 +44,18 @@ export default function AddEditScreen({ navigation }){
 
     useEffect(() => {
         if(id.length == 4)
-            axios.get(`${urlBase}/people/${id.toLowerCase()}`).then(response => {
-                setPerson(response.data);
+            getUsersById(id).then(user => {
+                setPerson(user);
             }).catch(error => {
+                setErrorMessage(error.message);
+                setPopupVisible(true);
                 setPerson({
                     nome: "",
                     sobrenome: "",
                     email: ""
                 });
-            })
+                setErrorMessage(error?.message);
+            });
         else
             setPerson({
                 nome: "",
@@ -59,9 +65,12 @@ export default function AddEditScreen({ navigation }){
     }, [id]);
 
     useEffect(() => {
-        axios.get(`${urlBase}/people?nome:startsWith=${name}`).then(response => {
-            setPeople(response.data);
-        });
+        getUsersByName("startWith", name).then(users => {
+            setPeople(users);
+        }).catch(error => {
+            setErrorMessage(error?.message);
+            setPopupVisible(true);
+        })
     }, [name]);
 
     useEffect(() => {
@@ -211,13 +220,11 @@ export default function AddEditScreen({ navigation }){
                         }}
                         onPress={() => {
                             if(name && surname && email){
-                                let newPerson = person;
-                                newPerson.nome = name;
-                                newPerson.sobrenome = surname;
-                                newPerson.email = email;
-                                axios.post(`${urlBase}/people`, newPerson).then(response => {
-                                    alert("Usuário criado com sucesso!");
-                                }).finally(() => clear());
+                                createUser(name, surname, email).catch(error => {
+                                    setErrorMessage(error?.message);
+                                    setPopupVisible(true);
+                                });
+                                clear();
                             }
                             else
                                 alert("Preencha todos os dados corretamente antes de enviar");
@@ -330,11 +337,11 @@ export default function AddEditScreen({ navigation }){
                                 }}
 
                                 onPress={() => {
-                                    axios.put(`${urlBase}/people/${person?.id}`, person).then(response =>{
-                                        alert("Usuário atualizado com sucesso!");
-                                    }).catch(error => {
-                                        console.log(error);
-                                    }).finally(() => clear())
+                                    updateUser(person).catch(error => {
+                                        setErrorMessage(error?.message);
+                                        setPopupVisible(true);
+                                    })
+                                    clear();
                                 }}
                             ><Text>Enviar dados</Text></TouchableOpacity>
                         </View>
@@ -401,7 +408,13 @@ export default function AddEditScreen({ navigation }){
                                     />
                                 </View>
                             ) : (
-                                <Loading/>
+                                <>
+                                    {(popupVisible) ? (
+                                        <PopUp visible={popupVisible} message={errorMessage}/>
+                                    ) : (
+                                        <Loading/>
+                                    )}
+                                </>
 
                             )}
                         </>

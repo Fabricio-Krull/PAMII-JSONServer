@@ -2,11 +2,13 @@ import axios from "axios";
 import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity, TextInput } from 'react-native';
 import Loading from "../components/Loading";
-import { urlBase } from "../server/apiJS";
+
+import { deleteUser, getUsersByName } from "../server/peopleCRUD";
+import PopUp from "../components/PopUp";
 
 const { height, width } = Dimensions.get('window');
 
-export default function HomeScreen({ navigation }){
+export default function HomeScreen({ navigation } : {navigation: any}){
 
     const [people, setPeople] = useState();
     const [loading, setLoading] = useState(true);
@@ -15,14 +17,18 @@ export default function HomeScreen({ navigation }){
     const [filterTypeSymbol, setFilterTypeSymbol] = useState("➡️");
     // atualização de tela em ações do usuário
     const [action, setAction] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [popupVisible, setPopupVisible] = useState(false);
 
     const deleteMe = (id: string) => {
-        axios.delete(`${urlBase}/people/${id}`).then(response => {
-            alert("Usuário apagado com sucesso!");
-        }).finally(() => {
+        deleteUser(id).finally(() => {
             setLoading(true);
             setAction(!action);
-        });
+            setErrorMessage('');
+        }).catch(error => {
+            setPopupVisible(true);
+            setErrorMessage(error?.message);
+        })
     }
 
     const changeFilter = () => {
@@ -31,11 +37,15 @@ export default function HomeScreen({ navigation }){
     }
 
     useEffect(() => {
-        axios.get(`${urlBase}/people?nome:${filterType}=${nameFilter}`).then(response => {
-            setPeople(response.data);
+        // alert(errorMessage);
+        getUsersByName(filterType, nameFilter).then(users => {
+            setPeople(users);
             setLoading(false);
-            // alert(JSON.stringify(response.data));
-        }).catch(error => {console.log(error)});
+            setErrorMessage('');
+        }).catch(error => {
+            setPopupVisible(true);
+            setErrorMessage(error?.message);
+        });
     }, [action, nameFilter, filterType]);
 
 
@@ -187,7 +197,18 @@ export default function HomeScreen({ navigation }){
                     />
                 </View>
             ) : (
-                <Loading/>
+                <View style={{
+                    display: 'flex',
+                    alignContent: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    {(errorMessage.length > 0 && popupVisible) ? (
+                        <PopUp visible={popupVisible} message={errorMessage}/>
+                    ) : (
+                        <Loading/>
+                    )}
+                </View>
             )}
         </View>
 

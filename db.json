@@ -1,7 +1,7 @@
 {
   "people": [
     {
-      "nome": "Júlia",
+      "nome": "Julia",
       "sobrenome": "Macedo",
       "email": "juuumacedo@email.com",
       "id": "4de5"
@@ -17,12 +17,6 @@
       "sobrenome": "Conneto",
       "email": "connetonho@email.com",
       "id": "0fe7"
-    },
-    {
-      "nome": "Carla",
-      "sobrenome": "Ferreira",
-      "email": "carla.ferreira@email.com",
-      "id": "9ae8"
     },
     {
       "nome": "Fernandhia",
@@ -77,6 +71,12 @@
       "nome": "Kendrick",
       "sobrenome": "Lamar",
       "email": "K.dot@email.com"
+    },
+    {
+      "id": "5de6",
+      "nome": "Milton",
+      "sobrenome": "Nascimento",
+      "email": "clubistadaesquina@king.com"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
