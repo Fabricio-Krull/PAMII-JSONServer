@@ -1,12 +1,11 @@
 import axios from "axios";
 import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { styles } from "./AddEditScreen";
 import Loading from "../components/Loading";
 import { TextInput } from "react-native-gesture-handler";
 import PopUp from "../components/PopUp";
 import { createUser, getUsersByName, getUsersById, updateUser } from "../server/peopleCRUD";
-
-const { height, width } = Dimensions.get('window');
 
 export default function AddEditScreen({ navigation } : {navigation: any}){
 
@@ -79,25 +78,9 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
 
     return(
 
-        <View style={{
-            height: height * 1.2,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: "#1d3557",
-        }}>
+        <View style={styles.body}>
 
-            <View style={{
-                display: 'flex',
-                flexDirection: 'row',
-                backgroundColor: "#002950",
-                height: height / 6,
-                width: width,
-                marginBottom: 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 10
-            }}>
+            <View style={styles.container}>
 
                 <TouchableOpacity
                     style={{
