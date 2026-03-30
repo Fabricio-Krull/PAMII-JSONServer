@@ -77,6 +77,12 @@
       "nome": "Milton",
       "sobrenome": "Nascimento",
       "email": "clubistadaesquina@king.com"
+    },
+    {
+      "id": "8f76",
+      "nome": "Vucu",
+      "sobrenome": "9y9h",
+      "email": "Bkhoh"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
