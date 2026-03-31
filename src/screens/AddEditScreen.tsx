@@ -1,11 +1,13 @@
 import axios from "axios";
 import react, {useState, useEffect} from "react";
 import { FlatList, Text, View, Dimensions, TouchableOpacity } from 'react-native';
-import { styles } from "./AddEditScreen";
+import { styles } from "./AddEditStyle";
 import Loading from "../components/Loading";
 import { TextInput } from "react-native-gesture-handler";
 import PopUp from "../components/PopUp";
 import { createUser, getUsersByName, getUsersById, updateUser } from "../server/peopleCRUD";
+
+const { height, width } = Dimensions.get('window');
 
 export default function AddEditScreen({ navigation } : {navigation: any}){
 
@@ -13,13 +15,15 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
     const [person, setPerson] = useState({
         nome: "",
         sobrenome: "",
-        email: ""
+        email: "",
+        phone: ""
     });
     const [people, setPeople] = useState([]);
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [id, setId] = useState("");
+    const [phone, setPhone] = useState("");
     const [searchType, setSearchType] = useState("id");
     const [errorMessage, setErrorMessage] = useState('');
     const [popupVisible, setPopupVisible] = useState(false);
@@ -34,10 +38,12 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
         setEmail("");
         setName("");
         setSurname("");
+        setPhone("");
         setPerson({
             nome: "",
             sobrenome: "",
-            email: ""
+            email: "",
+            phone: ""
         });
     }
 
@@ -51,7 +57,8 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                 setPerson({
                     nome: "",
                     sobrenome: "",
-                    email: ""
+                    email: "",
+                    phone: ""
                 });
                 setErrorMessage(error?.message);
             });
@@ -59,7 +66,8 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
             setPerson({
                 nome: "",
                 sobrenome: "",
-                email: ""
+                email: "",
+                phone: ""
             });
     }, [id]);
 
@@ -194,6 +202,18 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                             
                             ></TextInput>
 
+                            <TextInput placeholder="Inserir telefone" style={{
+                                    backgroundColor: "#0077b6",
+                                    width: width / 1.2,
+                                    borderRadius: 5,
+                                    margin: 5,
+                                    color: "#caf0f8"
+                                }}
+                                value={phone}
+                                onChangeText={setPhone}
+                            
+                            ></TextInput>
+
                             <TouchableOpacity style={{
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -312,6 +332,20 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                                     
                                     ></TextInput>
                 
+                                    <TextInput placeholder="Inserir telefone" style={{
+                                            backgroundColor: "#0077b6",
+                                            width: width / 1.2,
+                                            borderRadius: 5,
+                                            margin: 5,
+                                            color: "#caf0f8"
+                                        }}
+                                        value={person?.phone}
+                                        onChangeText={(e) => setPerson({
+                                            ...person, phone: e
+                                        })}
+                                    
+                                    ></TextInput>
+
                                     <TouchableOpacity style={{
                                             display: 'flex',
                                             justifyContent: 'center',
@@ -334,7 +368,6 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                             ) : (
                                 <>
                                     {(people?.length > 0 && searchType == "nome") && (
-                                    // {(false) ? (
                                         <View style={{
                                             height: height / 1.75,
                                         }}>
@@ -401,7 +434,7 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                         </View>
                     )}
             ) ? (
-                <PopUp visible={true} message={errorMessage}/>
+                <PopUp visible={popupVisible} message={errorMessage}/>
             ))
             <>
             </>

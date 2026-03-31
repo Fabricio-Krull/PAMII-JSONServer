@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
-import AddEditScreen from './src/screens/AddEditScreen';
+import AddEditScreen from './src/screens/AddEditScreen'
 
 const Stack = createStackNavigator();
 

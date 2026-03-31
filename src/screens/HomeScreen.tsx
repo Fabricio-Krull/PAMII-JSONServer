@@ -175,6 +175,12 @@ export default function HomeScreen({ navigation } : {navigation: any}){
                                         marginLeft: 10,
                                         marginRight: 10
                                     }}>{item?.email}</Text>
+                                    <Text style={{
+                                        color: "#fff",
+                                        margin: 5,
+                                        marginLeft: 10,
+                                        marginRight: 10
+                                    }}>{item?.phone}</Text>
                                 </View>
 
                                 <TouchableOpacity style={{
