@@ -100,7 +100,9 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                         borderRadius: 5
                     }}
                     onPress={() => navigation.navigate("Home")}
-                ><Text style={{color: "#000"}}>Home</Text></TouchableOpacity>
+                >
+                    <Text style={{color: "#000"}}>Home</Text>
+                </TouchableOpacity>
                 
                 <TouchableOpacity
                     style={{
@@ -113,7 +115,9 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                         borderWidth: 1,
                         borderColor: "#adefff"
                     }}
-                ><Text style={{color: "#000"}}>Edit</Text></TouchableOpacity>
+                >
+                    <Text style={{color: "#000"}}>Edit</Text>
+                </TouchableOpacity>
 
             </View>
 
@@ -224,8 +228,8 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                                     borderRadius: 5
                                 }}
                                 onPress={() => {
-                                    if(name && surname && email){
-                                        createUser(name, surname, email).catch(error => {
+                                    if(name && surname && email && phone){
+                                        createUser(name, surname, email, phone).catch(error => {
                                             setErrorMessage(error?.message);
                                             setPopupVisible(true);
                                             alert("Ocorreu algum erro no servidor...");
@@ -282,10 +286,12 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                                         justifyContent: 'center'
                                     }}
                                     onPress={changeFilter}
-                                ><Text style={{color: "#caf0f8", fontSize: 20, marginBottom: 8}}>{searchType}</Text></TouchableOpacity>
+                                >
+                                    <Text style={{color: "#caf0f8", fontSize: 20, marginBottom: 8}}>{searchType}</Text>
+                                </TouchableOpacity>
                             </View>
 
-                            {(id.length == 4 && person.email != "" && person.nome != "" && person.sobrenome != "") ? (
+                            {(id.length == 4 && person.email != "" && person.nome != "" && person.sobrenome != "" && person.phone != "") ? (
                                 <View style={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -363,7 +369,9 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                                             })
                                             clear();
                                         }}
-                                    ><Text>Enviar dados</Text></TouchableOpacity>
+                                    >
+                                        <Text>Enviar dados</Text>
+                                    </TouchableOpacity>
                                 </View>
                             ) : (
                                 <>
@@ -406,7 +414,8 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                                                                 setId(item?.id);
                                                                 setSearchType("id");
                                                             }}
-                                                        ><Text style={{fontSize: 35, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>✅</Text>
+                                                        >
+                                                            <Text style={{fontSize: 35, display: 'flex', justifyContent: 'center', alignContent: 'center'}}>✅</Text>
                                                         </TouchableOpacity>
                                                         <View>
                                                             <Text style={{
@@ -414,13 +423,15 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
                                                                 margin: 5,
                                                                 marginLeft: 10,
                                                                 marginRight: 10
-                                                            }}>{item?.nome} {item?.sobrenome}</Text>
+                                                            }}>{item?.nome} {item?.sobrenome}
+                                                            </Text>
                                                             <Text style={{
                                                                 color: "#fff",
                                                                 margin: 5,
                                                                 marginLeft: 10,
                                                                 marginRight: 10
-                                                            }}>{item?.email}</Text>
+                                                            }}>{item?.email}
+                                                            </Text>
                                                         </View>
             
                                                     </View>

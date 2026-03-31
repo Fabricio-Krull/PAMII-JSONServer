@@ -168,7 +168,7 @@ export default function HomeScreen({ navigation } : {navigation: any}){
                                         margin: 5,
                                         marginLeft: 10,
                                         marginRight: 10
-                                    }}>{item?.nome} {item?.sobrenome}</Text>
+                                    }}>{item?.id} | {item?.nome} {item?.sobrenome}</Text>
                                     <Text style={{
                                         color: "#fff",
                                         margin: 5,

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { urlBase } from "./apiJS";
 
-const createUser = (name: string, surname: string, email: string) => {
-    let newPerson = {nome:"", sobrenome:"", email:""}
+const createUser = (name: string, surname: string, email: string, phone: string) => {
+    let newPerson = {nome:"", sobrenome:"", email:"", phone:""}
     newPerson.nome = name;
     newPerson.sobrenome = surname;
     newPerson.email = email;
+    newPerson.phone = phone;
     return axios.post(`${urlBase}/people`, newPerson).then(response => {
         alert("Usuário criado com sucesso!");
     });

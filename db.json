@@ -98,6 +98,27 @@
       "phone": "19 10004 2245",
       "sobrenome": "9y9h",
       "email": "Bkhoh"
+    },
+    {
+      "id": "2088",
+      "nome": "Diogo",
+      "sobrenome": "Messias",
+      "email": "Diogoams@email.com",
+      "phone": "19 80949 1929"
+    },
+    {
+      "id": "9468",
+      "nome": "Marc",
+      "sobrenome": "Zucker",
+      "email": "Spy@email.com",
+      "phone": "69 67900 1289"
+    },
+    {
+      "id": "545f",
+      "nome": "Jdjdje",
+      "sobrenome": "Mrndnsne",
+      "email": "Memdndsn",
+      "phone": "183929 901"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
