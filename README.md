@@ -78,7 +78,7 @@ PAMII-JSONServer/src/server/apiJS.ts
 Substitua a URL dentro das aspas pela URL gerada pelo Pinggy:
 
 ```ts
-const BASE_URL = "https://sua-url-aqui.pinggy.io";
+const urlBase = "https://sua-url-aqui.pinggy.io";
 ```
 
 ---
