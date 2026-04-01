@@ -4,6 +4,7 @@
   "main": "index.ts",
   "scripts": {
     "start-server": "json-server db.json --watch",
+    "pinggy": "ssh -p 443 -R0:127.0.0.1:3000 qr@free.pinggy.io",
     "start": "expo start",
     "app:lan": "expo start --lan",
     "app:tun": "expo start --tunnel",

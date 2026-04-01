@@ -1,7 +1,140 @@
-Primeiro, rode "npm i --force" dentro do diretório "./PAMII-JSONServer". Caso necessário, rode "npm audit fix --force".
+# 📦 Projeto PAMII - JSON Server + App Expo
 
-Após instalar as dependências no passo anterior, primeiro rode "npm run start-server", para iniciar o servidor local.
+Este projeto consiste em um servidor local utilizando JSON Server e um aplicativo mobile desenvolvido com Expo. Para que tudo funcione corretamente, é necessário configurar o ambiente, iniciar o servidor e criar um túnel externo para acesso via dispositivo móvel.
 
-Então, rode o comando "ssh -p 443 -R0:127.0.0.1:3000 qr@free.pinggy.io" para iniciar um túnel com o Pinggy.io. Este comando irá gerar uma URL no terminal do VSCode, CMD ou Powershell. Selecione e copie a URL (qualquer uma das duas geradas), e coloque dentro das aspas no arquivo localizado em PAMII-JSONServer/src/server/apiJS.ts.
+---
 
-Após ter o servidor rodando corretamente, execute o comando "npm run app:tun", para iniciar o aplicativo. Quando terminar de executar, leia o QR Code usando o aplicativo do Expo para celular, o Expo Go.
+## 🚀 Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado:
+
+* Node.js (versão recomendada LTS)
+* npm ou yarn
+* Expo Go no celular
+* Git
+
+---
+
+## 📥 Clonando o projeto
+
+```bash
+git clone https://github.com/Fabricio-Krull/PAMII-JSONServer
+cd PAMII-JSONServer
+```
+
+---
+
+## 📦 Instalação das dependências
+
+Dentro da pasta do projeto, execute:
+
+```bash
+npm install --force
+```
+
+Caso ocorram vulnerabilidades ou erros:
+
+```bash
+npm audit fix --force
+```
+
+---
+
+## 🖥️ Iniciando o servidor local
+
+Execute o comando abaixo para iniciar o JSON Server:
+
+```bash
+npm run start-server
+```
+
+O servidor será iniciado localmente (geralmente na porta 3000).
+
+---
+
+## 🌐 Criando um túnel com Pinggy
+
+Para permitir o acesso externo (necessário para o app mobile), execute:
+
+```bash
+npm run pinggy
+```
+
+Após rodar o comando:
+
+* Uma URL pública será gerada no terminal
+* Copie **qualquer uma das URLs exibidas**
+
+---
+
+## 🔧 Configurando a URL no projeto
+
+Abra o arquivo:
+
+```
+PAMII-JSONServer/src/server/apiJS.ts
+```
+
+Substitua a URL dentro das aspas pela URL gerada pelo Pinggy:
+
+```ts
+const BASE_URL = "https://sua-url-aqui.pinggy.io";
+```
+
+---
+
+## 📱 Executando o aplicativo
+
+Agora inicie o app com:
+
+```bash
+npm run app:tun
+```
+
+---
+
+## 📲 Rodando no celular
+
+1. Abra o aplicativo **Expo Go** no seu celular
+2. Escaneie o QR Code exibido no terminal
+3. Aguarde o carregamento do app
+
+---
+
+## ⚠️ Observações importantes
+
+* O servidor (`start-server`) deve estar rodando antes de iniciar o app
+* O túnel do Pinggy precisa estar ativo durante o uso do app
+* Sempre que reiniciar o túnel, será necessário atualizar a URL no `apiJS.ts`
+
+---
+
+## 🛠️ Possíveis problemas
+
+### ❌ Erro ao instalar dependências
+
+* Tente rodar novamente com:
+
+```bash
+npm install --force
+```
+
+### ❌ Vulnerabilidades no projeto
+
+```bash
+npm audit fix --force
+```
+
+### ❌ App não conecta ao servidor
+
+Verifique se:
+
+* O servidor está rodando
+* O túnel está ativo
+* A URL foi atualizada corretamente
+
+---
+
+## 📄 Licença
+
+Este projeto é apenas para fins educacionais.
