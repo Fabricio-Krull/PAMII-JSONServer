@@ -101,6 +101,8 @@ npm run app:tun
 
 ---
 
+Vídeo demonstrativo: https://youtu.be/mfoFm0cEVbA?si=UthViUEliSvCqC1k
+
 ## ⚠️ Observações importantes
 
 * O servidor (`start-server`) deve estar rodando antes de iniciar o app

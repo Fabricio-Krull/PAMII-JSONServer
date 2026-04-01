@@ -15,13 +15,6 @@
       "id": "352d"
     },
     {
-      "nome": "Tonhu",
-      "phone": "19 88674 2245",
-      "sobrenome": "Conneto",
-      "email": "connetonho@email.com",
-      "id": "0fe7"
-    },
-    {
       "nome": "Fernandhia",
       "phone": "19 82174 2245",
       "sobrenome": "Arteis",
@@ -29,7 +22,7 @@
       "id": "6bb0"
     },
     {
-      "nome": "Renata",
+      "nome": "Renatta",
       "phone": "19 88074 8745",
       "sobrenome": "Barbosa",
       "email": "renata.barbuda@email.com",
@@ -93,13 +86,6 @@
       "email": "clubistadaesquina@king.com"
     },
     {
-      "id": "8f76",
-      "nome": "Vucu",
-      "phone": "19 10004 2245",
-      "sobrenome": "9y9h",
-      "email": "Bkhoh"
-    },
-    {
       "id": "2088",
       "nome": "Diogo",
       "sobrenome": "Messias",
@@ -107,18 +93,11 @@
       "phone": "19 80949 1929"
     },
     {
-      "id": "9468",
-      "nome": "Marc",
-      "sobrenome": "Zucker",
-      "email": "Spy@email.com",
-      "phone": "69 67900 1289"
-    },
-    {
-      "id": "545f",
-      "nome": "Jdjdje",
-      "sobrenome": "Mrndnsne",
-      "email": "Memdndsn",
-      "phone": "183929 901"
+      "id": "86c6",
+      "nome": "Rafael",
+      "sobrenome": "Cruz",
+      "email": "rafacruz@gmail.com",
+      "phone": "19 84939 0993"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

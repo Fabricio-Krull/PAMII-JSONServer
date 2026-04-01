@@ -72,7 +72,7 @@ export default function AddEditScreen({ navigation } : {navigation: any}){
     }, [id]);
 
     useEffect(() => {
-        getUsersByName("startWith", name).then(users => {
+        getUsersByName("startsWith", name).then(users => {
             setPeople(users);
         }).catch(error => {
             setErrorMessage(error?.message);
